@@ -594,42 +594,62 @@
 	
 	<script>
 		function prepareSubmit() {
-		  const nickname = document.getElementById('nickname').value;
-		  const comment = document.getElementById('comment').value;
-		  
-		  const formData = {
-		    timestamp: new Date().toLocaleString(),
-		    tag: "COMMENT",
-		    id: 1,
-		    nickname: nickname,
-		    comment: comment
-		  };
-		
-		  sendDataToGoogleSheet(formData);
+	    		submitted = true;
+	    		submitComment();
 		}
-		function sendDataToGoogleSheet(formData) {
-		  fetch('https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/edit#gid=1589901127', {
-		    method: 'POST',
-		    mode: 'no-cors',
-		    headers: {
-		      'Content-Type': 'application/json',
-		    },
-		    body: JSON.stringify(formData)
-		  })
-		  .then(response => {
-		    console.log('提交成功！', response);
-		    // 在這裡添加提交成功後的處理邏輯
-		  })
-		  .catch(error => {
-		    console.error('提交失敗！', error);
-		    // 在這裡添加提交失敗後的處理邏輯
-		  });
+		function submitComment() {
+	    		checkCount();
 		}
-
+		function checkCount() {		
+	    		var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/edit#gid=1589901127';
+	    		var query = new google.visualization.Query(url);
+			query.setQuery("select * where B='COMMENT'");
+	    		query.send(Count);
+		}
+		function Count(response) {	
+	    		if (response.isError()) {
+	        		alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+	        		return;
+	    		}
+	    		var dataTable = response.getDataTable();
+	    		var count = dataTable.getNumberOfRows();
+	    		count += 1;
+	    		document.getElementById("getNUMBER").innerHTML = count;
+	    		submitFormWithCount(count);
+		}
+		function submitFormWithCount(count) {	
+	    		var nickname = document.getElementById('icon_prefix').value;	//自輸入欄擷取暱稱、留言內容
+	    		var comment = document.getElementById('textarea1').value;
+	    		//將表單填入的地方設為隱藏的iframe，以便使收到回覆頁面不顯示
+			var form = document.createElement('form');
+	    		form.target = 'hidden_iframe';
+	        	form.method = 'POST';
+	        	form.action = 'https://docs.google.com/forms/d/e/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/formResponse';
+	        	form.style.display = 'none';
+			function createInput(name, value) {
+	        		var input = document.createElement('input');
+	            		input.type = 'hidden';
+	            		input.name = name;
+	            		input.value = value;
+	            		form.appendChild(input);
+	        	}
+			//利用「取得預先填入連結」，得到對應問題的id，標籤欄填入預設值，其他欄分別填入取得的字串
+	        	createInput('entry.1464776894', 'COMMENT');
+	        	createInput('entry.581370753', nickname);
+	        	createInput('entry.1171223318', comment);
+	    		createInput('entry.195910240', count.toString());
+	    		document.body.appendChild(form);
+	    		//提交表單並清空輸入欄
+			form.submit();
+	    		document.getElementById('icon_prefix').value = '';
+	    		document.getElementById('textarea1').value = '';
+		}
 	</script>
 
 	<!--意見回饋-->
-	<h4 style="margin-left: 30px;">意見回饋</h4>
+	<div class="container" style="margin-left: 20px;">
+		<p style="font-size: 20px;">意見回饋</p>
+	</div>
 	<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location.reload();}"></iframe>
 	<div class="container" id="comment">
 		<hr color="white">
