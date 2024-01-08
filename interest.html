@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Interest</title>
+		 <!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@600&family=Righteous&display=swap');
+	</style>
+
+	<style>
+	/* width */
+	::-webkit-scrollbar {
+		width: 10px;
+		background: none;
+		box-shadow: inset 0 0 5px grey; 
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		box-shadow: inset 0 0 5px grey; 
+		border-radius: 20px;
+		margin:10px;
+		
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		border-radius: 20px;
+		background: #00AEAE;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+		
+	#nav {
+		list-style-type: none;
+		height: 60px;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #00AEAE;
+	}
+	#nav li{
+		float: center;
+		margin-left: 20px;
+		float: left;
+		display: inline;
+		justify-content: center;
+		text-align: center;
+	}
+	#nav li a {
+		font-family: 'Dela Gothic One', sans-serif;
+		font-family: 'Oswald', sans-serif;
+		font-family: 'Righteous', sans-serif;
+		justify-content: center;
+		text-align: center;
+		color: #fff;
+		font-size: 28px;
+		text-decoration: none;
+		text-align: center;
+		display: block;
+		padding: 8px;
+		background-color: #00AEAE;
+	}
+	
+	#nav li a:hover{
+		background-color: #007979;
+	}
+	
+	#bigtitle{
+		font-size: 150px; 
+		font-family: 'Oswald', sans-serif;
+		poistion: relative;
+		margin-top: 50px;
+		letter-spacing: 3px;
+		background: url(card_background1.jpg) 50% 50%;
+		background-size: cover;
+		-webkit-text-fill-color: transparent;
+		-webkit-background-clip: text;
+	}
+	.interest-card {
+		margin: 30px;
+		position: relative;
+		width: 80%;
+		height: 200px;
+		background: none;
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+	}
+
+	.interest-card img {
+		border-radius: 20px;
+		display: relative;
+		width: 80%;
+		height: 100%;
+		fill: #333;
+		transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+	}
+
+	.interest-card:hover {
+		transform: rotate(-5deg) scale(1.1);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	}
+
+	.interest-card .card__content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) rotate(-45deg);
+		width: 100%;
+		height: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+		background-color: #fff;
+		opacity: 0;
+		transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+	}
+
+	.interest-card:hover .card__content {
+		transform: translate(-50%, -50%) rotate(0deg);
+		opacity: 1;
+	}
+
+	.interest-card .card__title {
+		margin: 0;
+		font-size: 24px;
+		color: #333;
+		font-weight: 700;
+	}
+
+	.interest-card .card__description {
+		margin: 10px 0 0;
+		font-size: 14px;
+		color: #777;
+		line-height: 1.4;
+	}
+
+	.interest-card .card:hover img {
+		scale: 0;
+		transform: rotate(-45deg);
+	}
+	
+	@media(max-width: 1000px){
+		.interest-card img {
+			scale: 0.8;
+			width: 200%;
+		}
+	}
+	@media(max-width: 767px){
+		.interest-card img {
+			scale: 0.8;	
+		}
+	}
+	</style>
+	<body>
+	
+		<!--Back to home page-->
+		<div>
+			<ul id="nav">
+				<li><a href="index.html">＜BACK</a></li>
+			</ul>
+		</div>
+		
+		<!--Title-->
+		<div class="center">
+			<p id="bigtitle">INTEREST</p>
+		</div>
+		
+		<div class="row">
+			<div class="col s4 m3"></div>
+			<div class="interest-card col s4 m3">
+				<img src="interest_card1.jpg">
+				<div class="card__content">
+				<p class="card__title">RYTHM GAMES</p>
+				<p class="card__description">我喜歡玩節奏遊戲。跟隨著跳動的節拍，
+				手指舞動在螢幕上，每一個節拍都是一次靈魂的共振。</p>
+				</div>
+			</div>
+			<div class="interest-card col s4 m3">
+				<img src="interest_card2.jpg">
+				<div class="card__content">
+				<p class="card__title">CODING</p>
+				<p class="card__description">寫code也是我的興趣之一。透過寫程式，讓我在
+				面對問題時能夠以更有邏輯的演算法去解決。</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col s4 m3"></div>
+			<div class="interest-card col s4 m3">
+				<img src="interest_card3.jpg">
+				<div class="card__content">
+				<p class="card__title">DO MATH</p>
+				<p class="card__description">我也喜歡算數學。我覺得數學不僅是學科，
+				更是啟發思考的工具，每一個數學問題都是一次思考的旅程。</p>
+				</div>
+			</div>
+			<div class="interest-card col s4 m3">
+				<img src="interest_card4.jpg">
+				<div class="card__content">
+				<p class="card__title">BUILDING RESEARCH</p>
+				<p class="card__description">我喜歡研究建築的結構。探索建築物的骨架和設計，
+				讓我深入了解空間的美學和功能。</p>
+				</div>
+			</div>
+		</div>
+
+		
+
+		
+	</body>
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+		M.AutoInit();
+		$(document).ready(function(){
+			$('.parallax').parallax();
+		});
+	  
+		$(document).ready(function(){
+			$('.sidenav').sidenav();
+		});
+	</script>
+</html>

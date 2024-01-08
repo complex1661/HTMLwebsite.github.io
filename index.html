@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- 利用DataTable呈現表格 https://datatables.net/manual/installation -->
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />	  
+		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>  
+	
+		<!-- 利用Google Visualization讀取Google Sheet https://www.labnol.org/code/google-sheet-d3js-visualization-200608 -->
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+	
+		<title>Complex's Website</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Parallax Template - Materialize</title>
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+			@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@600&family=Righteous&display=swap');
+		</style>
+
+		<!-- CSS  -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	</head>
+
+<body>
+
+	<style>
+		#logo-container{
+			font-size: 25px; 
+			color: #fff;
+			letter-spacing: 5px;
+			font-family: 'Dela Gothic One', sans-serif;
+			font-family: 'Oswald', sans-serif;
+			font-family: 'Righteous', sans-serif;
+		}
+		@media(max-width: 1000px){
+			#logo-container{
+				font-size: 20px;
+				letter-spacing: 1px;
+			}
+		}
+		@media(max-width: 767px){
+			#logo-container{
+				font-size: 18px;
+				letter-spacing: 0;
+			}
+		}
+		#navbar{
+			color: #fff;
+			font-weight: 200;
+			font-size: 20px;
+			font-family: 'Dela Gothic One', sans-serif;
+			font-family: 'Oswald', sans-serif;
+			font-family: 'Righteous', sans-serif;
+		}
+		#sidenav{
+			margin-top: 20px;
+			color: #00AEAE;
+			font-family: 'Dela Gothic One', sans-serif;
+			font-family: 'Oswald', sans-serif;
+			font-family: 'Righteous', sans-serif;
+		}
+		#sidenav-end{
+			margin-top: 20px;
+			background: #00AEAE;
+			color: #fff;
+			font-family: 'Dela Gothic One', sans-serif;
+			font-family: 'Oswald', sans-serif;
+			font-family: 'Righteous', sans-serif;
+		}
+		
+		
+	</style>
+	
+	<nav class="teal lighten-2" role="navigation">
+		<div class="nav-wrapper container">
+			<a id="logo-container" href="#" class="brand-logo">Complex's Website</a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="#log" id="navbar">LOG</a></li>
+				<li><a href="#about" id="navbar">ABOUT</a></li>
+				<li><a href="#source" id="navbar">SOURCE</a></li>
+			</ul>
+
+			<ul id="nav-mobile" class="sidenav">
+				<li><a id="sidenav" class="sidenav-close" href="#log"><i class="material-icons">assignment</i>LOG</a></li>
+				<li><a id="sidenav" class="sidenav-close" href="#about"><i class="material-icons">person</i>ABOUT</a></li>
+				<li><a id="sidenav" class="sidenav-close" href="#source"><i class="material-icons">insert_drive_file</i>SOURCE</a></li>
+				<li><a id="sidenav-end" class="sidenav-close">CLOSE</a></li>
+			</ul>
+			<a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		</div>
+	</nav>
+
+	<!-- CSS of the bigtitle-->
+	<style>
+		/* width */
+		::-webkit-scrollbar {
+			width: 10px;
+			background: none;
+			box-shadow: inset 0 0 5px grey; 
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: #f1f1f1;
+			box-shadow: inset 0 0 5px grey; 
+			border-radius: 20px;
+			margin:10px;
+			
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			border-radius: 20px;
+			background: #00AEAE;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+		
+		
+		html{
+			scroll-behavior: smooth;
+		}
+		.full-page{
+			height: 100vh;
+		}
+		#bigtitle{
+			font-size: 200px; 
+			font-family: 'Oswald', sans-serif;
+			poistion: relative;
+			margin-top: 50px;
+			letter-spacing: 3px;
+			background: url(background2.jpg) 50% 50%;
+			background-size: cover;
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+		}
+		#menu{
+			border: 3px solid #00AEAE;
+			background-color: transparent;
+			opacity: 60%;
+			padding: 10px;
+			border-radius: 5px;
+			width: 150px;
+			transform: scale(1);
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		#menu:hover{
+			transition: 0.3s;
+			transform: scale(1.2);
+		}
+		#menu:active {
+			border: 3px solid #fff;
+            animation: button-click 0.2s forwards;
+        }
+        @keyframes button-click {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+		#menu:active a{
+			color: #fff;
+		}
+		#menu a{
+			font-family: 'Dela Gothic One', sans-serif;
+			font-family: 'Oswald', sans-serif;
+			font-family: 'Righteous', sans-serif;
+			color: #00AEAE;
+			font-size: 30px;
+			font-weight: 200;
+		}
+		#pagefront{
+			height: 1000px;
+		}
+		#listbuttons{
+			margin-top:150px;
+		}
+		#titleblock{
+			font-family: 'Dela Gothic One', sans-serif;
+			font-family: 'Oswald', sans-serif;
+			font-family: 'Righteous', sans-serif;
+		}
+		@media(max-width: 1000px){
+			#bigtitle{
+				font-size: 80px;
+			}
+			#pagefront{
+				height: 1000px;
+			}
+			#menu{
+				border: 3px solid #00AEAE;
+				background-color: transparent;
+				opacity: 60%;
+				padding: 10px;
+				border-radius: 5px;
+				width: 80px;
+				margin: 10px;
+			}
+			#menu a{
+				color: #00AEAE;
+				font-size: 15px;
+			}
+			#listbuttons{
+				margin-top:30px;
+			}
+		}
+	</style>
+
+	<div id="index-banner" class="parallax-container" style="height: 1500px;">
+		<div class="section no-pad-bot">
+			<div id="pagefront" class="container" >
+				<br><br>
+				<div id="listbuttons" class="center text-center w-100" >
+					<button id="menu" class="button button1"><a  href="#log">LOG</a></button>
+					<button id="menu" class="button button1"><a  href="#about">ABOUT</a></button>
+					<button id="menu" class="button button1"><a  href="#source">SOURCE</a></button>
+				</div>
+				<h1 id="bigtitle" class="center">Complex's Website</h1>
+				<div class="row center">
+					<h5 class="header col s12 light" style="font-weight:100; letter-spacing: 5px;">A website about myself</h5>
+				</div>
+				<br><br>
+			</div>
+		</div>
+		<div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+	</div>
+	
+	<style>
+		#gototop {
+			display: block; 
+			position: fixed; 
+			bottom: 60px;
+			right: 70px; 
+			z-index: 99; 
+			border: none; 
+			outline: none;
+			opacity: 1;
+			background-color: #00AEAE; 
+			color: white; 
+			cursor: pointer; 
+			padding: 10px;
+			scale: 2;
+			padding-right: 12px;
+			padding-left: 12px;
+			border-radius: 50%;
+			scale: 1.5;
+			font-size: 18px; 
+		}
+
+		#gototop:hover {
+		  background-color: #007979;
+		}
+	</style>
+	
+	<script>
+		let gototopbtn = document.getElementById("gototop");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			gototopbtn.style.display = "block";
+		  } else {
+			gototopbtn.style.display = "none";
+		  }
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		  document.body.scrollTop = 0; // For Safari
+		  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+	<button onclick="topFunction()" id="gototop" title="Go to top"><i class="material-icons">home</i></button>
+	
+	
+	
+	<style>
+	.card-title{
+		font-size: 35px !important;
+		font-family: 'Dela Gothic One', sans-serif;
+		font-family: 'Oswald', sans-serif;
+		font-family: 'Righteous', sans-serif;
+	}
+	.card-content #card-subtitle{
+		font-size: 18px;
+		font-weight: 400;
+	}
+	.card-image img{
+		height: 500px;
+	}
+	.card{
+		scale:1;
+		transition: 0.5s;
+		margin: 5px;
+	}
+	.card:hover{
+		transform: scale(1.05);
+		
+	}
+	#gotopage-btn{
+		margin-right: 10px !important;
+		scale: 1.5;
+		transition: 0.5s;
+	}
+	#gotopage-btn:hover{
+		transform: scale(1.2);
+		transition: 0.5s;
+	}
+	#image-selector{
+		display: fixed;
+		background: #72C5AF;
+		color: #fff;
+		padding: 10px;
+		border: none;
+		width: 200px;
+		font-family: 'Dela Gothic One', sans-serif;
+		font-family: 'Oswald', sans-serif;
+		font-family: 'Righteous', sans-serif;
+	}
+	#image-selector:hover{
+		background: #007979;
+	}
+	#imageGallery img{
+		height: 500px;
+	}
+	@media(max-width: 1000px){
+		.card-image img{
+			height: 200px;
+		}
+		#gotopage-btn{
+			scale: 1.2;
+		}
+	}
+	@media(max-width: 767px){
+		.card-image img{
+			height: 200px;
+		}
+		#gotopage-btn{
+			scale: 1.2;
+		}
+	}
+	</style>
+	
+	<div id="imageGallery" style="display:relative; margin-top: 70px; width: 750px; margin-left: auto; margin-right: auto;">
+		<img style="width: 750px; border-radius: 25px;" src="https://photo.travelking.com.tw/scenery/DE6589F1-FA8D-4C35-BDD1-98CBA3CCE8D4_e.jpg">
+	</div>
+	<div class="center" style="margin-top: 50px;">
+		<button id="image-selector" style="text-decoration: none; font-size: 30px; margin-right:100px;" onclick="javascript:image(-1)">Last</button>
+		<button id="image-selector" style="text-decoration: none; font-size: 30px; margin-left:100px;" onclick="javascript:image(1)">Next</button>
+	</div>
+	<script>
+		const images = ["https://photo.travelking.com.tw/scenery/DE6589F1-FA8D-4C35-BDD1-98CBA3CCE8D4_e.jpg",
+		"https://media-cdn.tripadvisor.com/media/photo-s/11/b7/70/4d/caption.jpg", 
+		"https://www.nups.ntnu.edu.tw/upfiles/univ-expo/%E4%B8%AD%E9%83%A8/%E5%8F%B0%E4%B8%AD%E5%B8%82/%E4%B8%80%E8%88%AC%E5%A4%A7%E5%AD%B8/%E4%B8%AD%E8%88%88/%E4%B8%AD%E8%88%88-pic03.jpg"]
+		i = 0  
+		function image(y){
+			i += y + images.length ;
+			document.getElementById("imageGallery").innerHTML = "<img style='border-radius: 25px;' src='" + images[i% images.length] + "' width='100%'>";
+		}
+	</script>
+	
+	<!--Log Section-->
+	<div id="log" style="margin: 50px; margin-top: 200px;">
+		<div class="parallax-container valign-wrapper" style="margin: 20px; border-radius: 10px;">
+			<div class="section no-pad-bot" >
+				<div class="container">
+					<div class="row center" >
+						<h5 id="titleblock"class="header col s12 light" style="font-size: 50px; color: #000; font-weight: 200; ">LOG</h5>
+					</div>
+				</div>
+			</div>
+			<div class="parallax" style="height: 100px;"><img src="background3.jpg" style="-webkit-filter: blur(10px);" alt="Unsplashed background img 2"></div>
+		</div>
+	</div>
+	
+	<!--log-->
+	<script>
+	
+    google.charts.load('current', {'packages':['corechart']});
+
+	google.charts.setOnLoadCallback(init);
+
+	function init() {
+	  var url =
+		'https://docs.google.com/spreadsheets/d/1yFlydAP81DayNMDzj12Tv2ZzVu1T5xHw8qzMnhD21nY/gviz/tq?headers=0&sheet=最新消息';
+	  var query = new google.visualization.Query(url);
+	  query.setQuery('select *');
+	  query.send(processSheetsData);
+	}	
+	
+	function processSheetsData(response) {
+	  var data = response.getDataTable();
+	  var columns = data.getNumberOfColumns();
+	  var rows = data.getNumberOfRows();
+
+	  var str = `<table id="myTable" class="display order-column">
+					<thead>
+						<tr>`;
+	  for (var c=0 ; c<columns ; c++) {	
+		  if (data.getFormattedValue(0,c)=='') columns=c; 
+		  else if (data.getFormattedValue(0,c)!='*')
+			 str +=			'<th>' + data.getFormattedValue(0,c) + '</th>';			
+	  }  
+	  
+		  str += `		</tr>
+					</thead>
+					<tbody>`;
+
+	  for (var r=1 ; r<rows ; r++) {
+		  str += '<tr>';
+		  for (c=0 ; c<columns ; c++) {	
+			  if (data.getFormattedValue(0,c)=='*') { 
+				 if (data.getFormattedValue(r,c)!="") {
+                    str += '<td><a href="' + data.getFormattedValue(r,c) + '" target="_blank">' + data.getFormattedValue(r,c+1) + '</a></td>';
+				    c++;
+                 }
+			  } 
+			  else
+				 str += '<td>' + data.getFormattedValue(r,c) + '</td>';	
+		  }
+		  
+		  str += '</tr>';
+	  }	  
+	  str += '</tbody></table>';
+	  
+	  document.getElementById("logtable").innerHTML = str;
+
+	 
+	  $(document).ready( function () {
+		  $('#myTable').DataTable({
+		    // Language Plug-in for Chinese-traditional https://datatables.net/plug-ins/i18n/Chinese-traditional.html
+		  	language: {url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/zh-HANT.json'},
+			// Disable ordering in the table https://datatables.net/reference/option/ordering
+			// ordering: false
+			// The order parameter https://datatables.net/examples/basic_init/table_sorting.html
+			order: [[0, 'desc']]
+	  	  });
+	  } );	  
+	  
+	}
+	
+	</script>
+	
+	<div id="logtable"></div>
+	
+	<!--About Section-->
+	<div id="about" style="margin: 50px;">
+		<div class="parallax-container valign-wrapper" style="margin: 20px; border-radius: 10px;">
+			<div class="section no-pad-bot">
+				<div class="container">
+					<div class="row center" >
+						<h5 id="titleblock"class="header col s12 light" style="font-size: 50px; color: #fff; font-weight: 200; ">ABOUT</h5>
+					</div>
+				</div>
+			</div>
+			<div class="parallax" style="height: 100px;"><img src="background4.jpg" style="-webkit-filter: blur(10px);" alt="Unsplashed background img 2"></div>
+		</div>
+		<div style="margin-top: 50px;"></div>
+		<div class="row">
+			<div class="col s6 m6">
+				<div class="card" style="border-radius: 20px;">
+					<div class="card-image">
+						<img src="card_background1.jpg">
+						<span class="card-title ">INTEREST</span>
+						<a id="gotopage-btn" class="btn-floating halfway-fab waves-effect waves-light" style="background: #00AEAE;" href="interest.html"><i class="material-icons">keyboard_arrow_right</i></a>
+					</div>
+					<div class="card-content">
+						<p id="card-subtitle">關於我的興趣</p>
+					</div>
+				</div>
+			</div>
+			<div class="col s6 m6">
+				<div class="card" style="border-radius: 20px;">
+					<div class="card-image">
+						<img src="card_background2.jpg">
+						<span class="card-title">FIELDS</span>
+						<a id="gotopage-btn" class="btn-floating halfway-fab waves-effect waves-light" style="background: #00AEAE;" href="field.html"><i class="material-icons">keyboard_arrow_right</i></a>
+					</div>
+					<div class="card-content">
+						<p id="card-subtitle">我涉及的領域</p>
+					</div>
+				</div>
+			</div>
+		</div>
+            
+	</div>
+	
+	<style>
+	.source-card {
+		position: relative;
+		width: 550px;;
+		height: 100px;
+		background-color: #f2f2f2;
+		border-radius: 10px;
+		display: flex;
+		margin-top: 10px;
+		margin-left: auto;	
+		margin-right: auto;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		perspective: 1000px;
+		box-shadow: 0 0 0 5px #ffffff80;
+		transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	}
+
+	.source-card:hover {
+		transform: scale(1.05);
+		box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+	}
+
+	.source-card .card__content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+		background-color: #f2f2f2;
+		transform: rotateX(-90deg);
+		transform-origin: bottom;
+		transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	}
+
+	.source-card:hover .card__content {
+		transform: rotateX(0deg);
+	}
+
+	.source-card .card__title {
+		margin: 0;
+		font-size: 24px;
+		color: #333;
+		font-weight: 700;
+	}
+
+	.source-card .card__description {
+		margin: 10px 0 0;
+		font-size: 14px;
+		color: #777;
+		line-height: 1.4;
+	}
+
+	</style>
+	
+	
+	<!--Source Section-->
+	<div id="source" style="margin: 50px;">
+		<div class="parallax-container valign-wrapper" style="margin: 20px; border-radius: 10px;">
+			<div class="section no-pad-bot" >
+				<div class="container">
+					<div class="row center" >
+						<h5 id="titleblock"class="header col s12 light" style="font-size: 50px; color: #000; font-weight: 200; ">SOURCE</h5>
+					</div>
+				</div>
+			</div>
+			<div class="parallax" style="height: 100px;"><img src="background5.jpg" style="-webkit-filter: blur(10px);" alt="Unsplashed background img 2"></div>
+		</div>
+		<div class="source-card">
+			<a href="https://complexs-coding-space.gitbook.io/complexs-coding-space/">
+				<img src="source1.jpg" style="scale:0.1;">
+				<div class="card__content">
+					<p class="card__title">Gitbook</p>
+					<p class="card__description">裡面放的是關於程式的筆記與刷題的分析。</p>
+				</div>
+			</a>
+		</div>
+
+		<a href="https://complexs-coding-space.gitbook.io/complexs-coding-space/"></a>
+	</div>	
+	
+
+
+	<footer class="page-footer teal">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text" style="font-family: 'Dela Gothic One', sans-serif; font-family: 'Oswald', sans-serif; font-family: 'Righteous', sans-serif;">Complex's Website</h5>
+					<p class="grey-text text-lighten-4">目前正在努力完成這個網站與更多 Project。</p>
+					<p class="grey-text text-lighten-4">請用這個信箱聯絡我: tcomplex1661@gmail.com</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+			</div>
+		</div>
+	</footer>
+
+
+  <!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+		M.AutoInit();
+		$(document).ready(function(){
+			$('.parallax').parallax();
+		});
+	  
+		$(document).ready(function(){
+			$('.sidenav').sidenav();
+		});
+	</script>
+	</body>
+</html>
