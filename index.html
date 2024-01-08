@@ -593,56 +593,24 @@
 	</div>	
 	
 	<script>
-		function prepareSubmit() {
-	    		submitted = true;
-	    		submitComment();
-		}
-		function submitComment() {
-	    		checkCount();
-		}
-		function checkCount() {		
-	    		var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/edit#gid=1589901127';
-	    		var query = new google.visualization.Query(url);
-			query.setQuery("select * where B='COMMENT'");
-	    		query.send(Count);
-		}
-		function Count(response) {	
-	    		if (response.isError()) {
-	        		alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-	        		return;
+		function formresponse() {
+			var name = document.forms["comments"]["name"].value;
+			var content = document.forms["comments"]["content"].value;
+			if (name==null || content=="")
+			{
+				alert("暱稱不可為空白!");
+				return false;
+			}
+			else if (content==null || content=="")
+			{
+				alert("內容不可為空白!");
+				return false;
+			}
+			else
+			{
+				var Submit = "https://docs.google.com/forms/d/e/1FAIpQLScNG5mLZMYcUub8LjZBCbkalGH6ACZ6YZBtDtg7rSZ476he7Q/formResponse?usp=pp_url&entry.246789019=" + name + "&entry.176476684=" + content;
+				var NewOpen = window.open(submit);
 	    		}
-	    		var dataTable = response.getDataTable();
-	    		var count = dataTable.getNumberOfRows();
-	    		count += 1;
-	    		document.getElementById("getNUMBER").innerHTML = count;
-	    		submitFormWithCount(count);
-		}
-		function submitFormWithCount(count) {	
-	    		var nickname = document.getElementById('icon_prefix').value;	//自輸入欄擷取暱稱、留言內容
-	    		var comment = document.getElementById('textarea1').value;
-	    		//將表單填入的地方設為隱藏的iframe，以便使收到回覆頁面不顯示
-			var form = document.createElement('form');
-	    		form.target = 'hidden_iframe';
-	        	form.method = 'POST';
-	        	form.action = 'https://docs.google.com/forms/d/e/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/formResponse';
-	        	form.style.display = 'none';
-			function createInput(name, value) {
-	        		var input = document.createElement('input');
-	            		input.type = 'hidden';
-	            		input.name = name;
-	            		input.value = value;
-	            		form.appendChild(input);
-	        	}
-			//利用「取得預先填入連結」，得到對應問題的id，標籤欄填入預設值，其他欄分別填入取得的字串
-	        	createInput('entry.1464776894', 'COMMENT');
-	        	createInput('entry.581370753', nickname);
-	        	createInput('entry.1171223318', comment);
-	    		createInput('entry.195910240', count.toString());
-	    		document.body.appendChild(form);
-	    		//提交表單並清空輸入欄
-			form.submit();
-	    		document.getElementById('icon_prefix').value = '';
-	    		document.getElementById('textarea1').value = '';
 		}
 	</script>
 
@@ -654,20 +622,22 @@
 	<div class="container" id="comment">
 		<hr color="white">
 		<div id="getNUMBER" style="display: none;"></div>
-		<div class="input-field">
-			<i class="material-icons prefix">account_circle</i>
-			<input id="icon_prefix" type="text" class="validate" data-length="20">
-			<label for="icon_prefix">暱稱</label>
-		</div>
-		<div class="input-field">
-			<textarea id="textarea1" class="materialize-textarea"></textarea>
-			<label for="textarea1">內容</label>
-		</div>
-		<div class="right-align">
-			<button class="btn waves-effect waves-light blue" type="button" name="action" onclick="prepareSubmit()">送出
-			<i class="material-icons right">send</i>
-			</button>
-		</div>
+		<form name="comments">
+			<div class="input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input id="icon_prefix" type="text" class="validate" data-length="20" name="name">
+				<label for="icon_prefix">暱稱</label>
+			</div>
+			<div class="input-field">
+				<textarea id="textarea1" class="materialize-textarea" name="content"></textarea>
+				<label for="textarea1">內容</label>
+			</div>
+			<div class="right-align">
+				<button class="btn waves-effect waves-light blue" type="button" name="action" onclick="prepareSubmit()">送出
+				<i class="material-icons right">send</i>
+				</button>
+			</div>
+		</form>
 	</div>
 	
 	<hr style="border-color: rgba(255, 255, 255, 0);">
