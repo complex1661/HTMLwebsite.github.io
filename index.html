@@ -592,6 +592,67 @@
 		<a href="https://complexs-coding-space.gitbook.io/complexs-coding-space/"></a>
 	</div>	
 	
+	<script>
+		function submitFormWithCount(count) {
+	    		var nickname = document.getElementById('icon_prefix').value;
+	    		var comment = document.getElementById('textarea1').value;
+	    		var form = document.createElement('form');
+	    		form.target = 'hidden_iframe';
+	        	form.method = 'POST';
+	        	form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdAROsTF04x-I9K57HfPzHWQh3Sc0sxG5k1kfCGiQyIwetfeQ/formResponse';
+	        	form.style.display = 'none';
+			function createInput(name, value) {
+	        		var input = document.createElement('input');
+	            		input.type = 'hidden';
+	            		input.name = name;
+	            		input.value = value;
+	            		form.appendChild(input);
+	        	}
+	        	createInput('entry.1464776894', 'COMMENT');
+	        	createInput('entry.581370753', nickname);
+	        	createInput('entry.1171223318', comment);
+	    		createInput('entry.195910240', count.toString());
+	    		document.body.appendChild(form);
+	    		form.submit();
+	    		document.getElementById('icon_prefix').value = '';
+	    		document.getElementById('textarea1').value = '';
+		}
+		
+		function prepareSubmit() {
+	    		submitted = true;
+	    		submitComment();
+		}
+	
+		function submitComment() {
+	    		checkCount();
+		}
+	</script>
+
+	<!--意見回饋-->
+	<h4 id="3">意見回饋</h4>
+		<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location.reload();}"></iframe>
+		<div class="container" id="comment">
+			<p>無須登入。請在這裡留言</p>
+			<hr color="white">
+			<div id="getNUMBER" style="display: none;"></div>
+			<div class="input-field">
+          			<i class="material-icons prefix">account_circle</i>
+          			<input id="icon_prefix" type="text" class="validate" data-length="20">
+          			<label for="icon_prefix">暱稱</label>
+        		</div>
+			<div class="input-field">
+          			<textarea id="textarea1" class="materialize-textarea"></textarea>
+          			<label for="textarea1">留言內容</label>
+        		</div>
+			<div class="right-align">
+				<button class="btn waves-effect waves-light blue" type="button" name="action" onclick="prepareSubmit()">送出
+    				<i class="material-icons right">send</i>
+  				</button>
+			</div>
+		</div>
+		<hr style="border-color: rgba(255, 255, 255, 0);">
+		<div class="container" id="showCOMMENT" style="background-color: rgba(255, 255, 255, 1);padding: 30px;">
+	</div>
 
 
 	<footer class="page-footer teal">
