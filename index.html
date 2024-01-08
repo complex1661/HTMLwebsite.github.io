@@ -399,7 +399,7 @@
 	
 	<script>
 	
-    google.charts.load('current', {'packages':['corechart']});
+    	google.charts.load('current', {'packages':['corechart']});
 
 	google.charts.setOnLoadCallback(init);
 
@@ -594,7 +594,7 @@
 	
 	<script>
 		function checkCount() {
-			var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?gid=1000193211';
+			var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/edit#gid=1589901127';
 			var query = new google.visualization.Query(url);
 			query.setQuery("select * where B='COMMENT'");
 			query.send(Count);
@@ -658,7 +658,7 @@
 		</div>
 		<div class="input-field">
 			<textarea id="textarea1" class="materialize-textarea"></textarea>
-			<label for="textarea1">留言內容</label>
+			<label for="textarea1">內容</label>
 		</div>
 		<div class="right-align">
 			<button class="btn waves-effect waves-light blue" type="button" name="action" onclick="prepareSubmit()">送出
@@ -666,6 +666,7 @@
 			</button>
 		</div>
 	</div>
+	
 	<hr style="border-color: rgba(255, 255, 255, 0);">
 	<div class="container" id="showCOMMENT" style="background-color: rgba(255, 255, 255, 1);padding: 30px;">
 	</div>
