@@ -593,6 +593,23 @@
 	</div>	
 	
 	<script>
+		function checkCount() {
+			var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?gid=1000193211';
+			var query = new google.visualization.Query(url);
+			query.setQuery("select * where B='COMMENT'");
+			query.send(Count);
+		}
+		function Count(response) {
+			if (response.isError()) {
+				alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+				return;
+			}
+			var dataTable = response.getDataTable();
+			var count = dataTable.getNumberOfRows();
+			count += 1;
+			document.getElementById("getNUMBER").innerHTML = count;
+			submitFormWithCount(count);
+		}
 		function submitFormWithCount(count) {
 	    		var nickname = document.getElementById('icon_prefix').value;
 	    		var comment = document.getElementById('textarea1').value;
@@ -632,7 +649,6 @@
 	<h4 id="3" style="margin: 20px;">意見回饋</h4>
 	<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location.reload();}"></iframe>
 	<div class="container" id="comment">
-		<p>無須登入。請在這裡留言</p>
 		<hr color="white">
 		<div id="getNUMBER" style="display: none;"></div>
 		<div class="input-field">
