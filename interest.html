@@ -3,12 +3,71 @@
 	<head>
 		<title>Interest</title>
 		 <!-- Compiled and minified CSS -->
+		<!-- Compiled and minified CSS -->
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script>
 		
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			// https://developers.google.com/chart/interactive/docs/quick_start
+			// Load the Visualization API and the corechart package.
+			google.charts.load('current', {'packages':['corechart']});
+			
+			// Set a callback to run when the Google Visualization API is loaded.	
+			google.charts.setOnLoadCallback(init);
+			
+			function init() {
+				var url =
+				'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?sheet=Interest';
+				var query = new google.visualization.Query(url);
+					query.setQuery('select *');
+					query.send(processSheetsData);
+			}	
+			
+			
+			cardtitle = ['','']
+			carddes = ['','']
+			
+			function processSheetsData(response) {
+				var data = response.getDataTable();
+				var columns = data.getNumberOfColumns();
+				var rows = data.getNumberOfRows();
+				
+				for (var r=0; r<rows ; r++) {
+					cardtitle[r] = data.getFormattedValue(r,0);
+					carddes[r] = data.getFormattedValue(r,1);
+				}
+			
+				f();
+			}
+			
+			function f(){
+				var s = '';
+				for(let i = 0; i < cardtitle.length ; i+=2){
+					s += `<div class="row">
+						<div class="col s4 m3"></div>
+						<div class="interest-card col s4 m3">
+							<img src="interest_card1.jpg">
+							<div class="card__content">
+							<p class="card__title">${cardtitle[i]}S</p>
+							<p class="card__description">${carddes[i]}</p>
+							</div>
+						</div>
+						<div class="interest-card col s4 m3">
+							<img src="interest_card2.jpg">
+							<div class="card__content">
+							<p class="card__title">${cardtitle[i+1]}</p>
+							<p class="card__description">${carddes[i+1]}p>
+							</div>
+						</div>
+					</div>`;
+				}
+				document.getElementById("generativeCard").innerHTML = s;
+			}
+			
+		</script>
 	</head>
 	
 	<style>
@@ -182,45 +241,7 @@
 			<p id="bigtitle">INTEREST</p>
 		</div>
 		
-		<div class="row">
-			<div class="col s4 m3"></div>
-			<div class="interest-card col s4 m3">
-				<img src="interest_card1.jpg">
-				<div class="card__content">
-				<p class="card__title">RYTHM GAMES</p>
-				<p class="card__description">我喜歡玩節奏遊戲。跟隨著跳動的節拍，
-				手指舞動在螢幕上，每一個節拍都是一次靈魂的共振。</p>
-				</div>
-			</div>
-			<div class="interest-card col s4 m3">
-				<img src="interest_card2.jpg">
-				<div class="card__content">
-				<p class="card__title">CODING</p>
-				<p class="card__description">寫code也是我的興趣之一。透過寫程式，讓我在
-				面對問題時能夠以更有邏輯的演算法去解決。</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col s4 m3"></div>
-			<div class="interest-card col s4 m3">
-				<img src="interest_card3.jpg">
-				<div class="card__content">
-				<p class="card__title">DO MATH</p>
-				<p class="card__description">我也喜歡算數學。我覺得數學不僅是學科，
-				更是啟發思考的工具，每一個數學問題都是一次思考的旅程。</p>
-				</div>
-			</div>
-			<div class="interest-card col s4 m3">
-				<img src="interest_card4.jpg">
-				<div class="card__content">
-				<p class="card__title">BUILDING RESEARCH</p>
-				<p class="card__description">我喜歡研究建築的結構。探索建築物的骨架和設計，
-				讓我深入了解空間的美學和功能。</p>
-				</div>
-			</div>
-		</div>
+		<div id="generativeCard></div>
 
 		
 
