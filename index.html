@@ -370,24 +370,23 @@
 
 	<div id="map"></div>
 	<script>
+		function initMap() {
+			var LatLng = {lat: 24.1167169, lng: 120.6726581};
+			
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 4,
+				center: LatLng
+			});
+			
+			var marker = new google.maps.Marker({
+				position: LatLng,
+				map: map,
+				title: '中興大學'
+			});
+		}
 	
-	function initMap() {
-		var LatLng = {lat: 24.1167169, lng: 120.6726581};
-		
-		var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 4,
-		center: LatLng
-		});
-		
-		var marker = new google.maps.Marker({
-			position: LatLng,
-			map: map,
-			title: '中興大學'
-		});
-	}
-	
-	    </script>
-	    <script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
 
 	
 	<!--image gallery-->
