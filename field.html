@@ -38,14 +38,16 @@
 			function generateCard(){
 			    var str = '';
 			    for(let i = 0; i < cardtitle.length ; i++){
-			      s += `<div class="banner">
-			             	 <p id="title">${cardtitle[i]}</p>
-					<div class="des">
-				              <p id="textbox">${carddes[i]}.</p>
-					</div>
-			        </div>`;
+			      s += `<div class="col s12 m6 l4">
+				          <div class="card">
+				            <div class="card-content">
+		 				<p>${cardtitle[i]}.</p>
+				              <p>${carddes[i]}.</p>
+				          </div>
+				          </div>
+				        </div>`
 			    }
-			    document.getElementById("generative-card").innerHTML = str;
+			    document.getElementById("generativeCard").innerHTML = str;
 			}
 		</script>
 	</head>
@@ -72,13 +74,13 @@
 		
 	}
 
-	/* Handle */
+	/* handle */
 	::-webkit-scrollbar-thumb {
 		border-radius: 20px;
 		background: #00AEAE;
 	}
 
-	/* Handle on hover */
+	/* handle on hover */
 	::-webkit-scrollbar-thumb:hover {
 		background: #555;
 	}
@@ -187,8 +189,8 @@
 			<p id="bigtitle">FIELD</p>
 		</div>
 
-
-		<div id="generative-card"></div>
+		<!--Generative Card-->
+		<div id="generativeCard"></div>
 		
 	</body>
 	
