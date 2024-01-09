@@ -26,7 +26,7 @@
 					query.send(processSheetsData);
 			}	
 			
-			
+			img = ['','']
 			cardtitle = ['','']
 			carddes = ['','']
 			
@@ -36,8 +36,9 @@
 				var rows = data.getNumberOfRows();
 				
 				for (var r=0; r<rows ; r++) {
-					cardtitle[r] = data.getFormattedValue(r,0);
-					carddes[r] = data.getFormattedValue(r,1);
+					img[r] = data.getFormattedValue(r,0);
+					cardtitle[r] = data.getFormattedValue(r,1);
+					carddes[r] = data.getFormattedValue(r,2);
 				}
 			
 				f();
@@ -241,7 +242,7 @@
 			<p id="bigtitle">INTEREST</p>
 		</div>
 		
-		<div id="generativeCard></div>
+		<div id="generativeCard"></div>
 
 		
 
