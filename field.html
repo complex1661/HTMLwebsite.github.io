@@ -2,22 +2,18 @@
 <html>
 	<head>
 		<title>Field</title>
-		 <!-- Compiled and minified CSS -->
+		<!-- Compiled and minified CSS -->
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-		
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<head>
-		<!-- 利用Google Visualization讀取Google Sheet https://www.labnol.org/code/google-sheet-d3js-visualization-200608 -->
-		<script src="https://www.gstatic.com/charts/loader.js"></script>
 		<script>
-		  	google.charts.load('current', {'packages':['corechart']});
+			google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(init);
+			
 			function init() {
-				var url =
-				'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?sheet=Field';
+				var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?sheet=Field';
 				var query = new google.visualization.Query(url);
 				query.setQuery('select *');
 				query.send(processSheetsData);
