@@ -140,6 +140,7 @@
 		}
 	}
 	</style>
+		
 	<script>
 		function init() {
 			var url =
@@ -165,7 +166,7 @@
 		    	generateCard();
 		}
 		  
-		  function generateCard(){
+		function generateCard(){
 		    var str = '';
 		    for(let i = 0; i < cardtitle.length ; i++){
 		      s += `<div class="banner">
@@ -177,7 +178,7 @@
 		        </div>`;
 		    }
 		    document.getElementById("generative-card").innerHTML = str;
-		  }
+		}
 	
 	</script>	
   
