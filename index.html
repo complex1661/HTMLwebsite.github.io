@@ -364,30 +364,11 @@
 	</style>
 
 	<div class="center" style="margin-top: 20px;">
-		<p style="font-size: 40px;">就讀地</p>
-		<p style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;">中興大學</p>
+		<p style="font-size: 40px; margin-bottom: 0px;">就讀地</p>
+		<p style="font-size: 20px; margin-top: 5px; margin-bottom: 10px;">中興大學</p>
 	</div>
-
-	<div id="map"></div>
-	<script>
-		function initMap() {
-			var LatLng = {lat: 24.1167169, lng: 120.6726581};
-			
-			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 4,
-				center: LatLng
-			});
-			
-			var marker = new google.maps.Marker({
-				position: LatLng,
-				map: map,
-				title: '中興大學'
-			});
-		}
-	
-	</script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
-
+		
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7283.134071074889!2d120.67265806835267!3d24.116716905720263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693cfcecffe9d9%3A0xe28afadc0dad203a!2z5ZyL56uL5Lit6IiI5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1704782880370!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	
 	<!--image gallery-->
 	<div id="imageGallery" style="display:relative; margin-top: 70px; width: 750px; margin-left: auto; margin-right: auto;">
