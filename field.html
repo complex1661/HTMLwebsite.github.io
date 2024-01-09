@@ -15,6 +15,43 @@
 		<script>
 		  	google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(init);
+			function init() {
+				var url =
+				'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?sheet=Field';
+				var query = new google.visualization.Query(url);
+				query.setQuery('select *');
+				query.send(processSheetsData);
+			}	
+			
+			cardtitle = ['','']
+			carddes = ['','']
+				
+			function processSheetsData(response) {
+				var data = response.getDataTable();
+				var columns = data.getNumberOfColumns();
+				var rows = data.getNumberOfRows();
+			
+				for (var r=0 ; r<rows ; r++) {
+					cardtitle[r] = data.getFormattedValue(r,0);
+					carddes[r] = data.getFormattedValue(r,1);
+				}
+			   
+			    	generateCard();
+			}
+			  
+			function generateCard(){
+			    var str = '';
+			    for(let i = 0; i < cardtitle.length ; i++){
+			      s += `<div class="banner">
+			              <p id="title">${cardtitle[i]}</p>
+			            <div class="des">
+			              <p id="textbox">${carddes[i]}.</p>
+			          </div>
+			          </div>
+			        </div>`;
+			    }
+			    document.getElementById("generative-card").innerHTML = str;
+			}
 		</script>
 	</head>
 	
@@ -140,47 +177,6 @@
 		}
 	}
 	</style>
-		
-	<script>
-		function init() {
-			var url =
-			'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?sheet=Field';
-			var query = new google.visualization.Query(url);
-			query.setQuery('select *');
-			query.send(processSheetsData);
-		}	
-		
-		cardtitle = ['','']
-		carddes = ['','']
-			
-		function processSheetsData(response) {
-			var data = response.getDataTable();
-			var columns = data.getNumberOfColumns();
-			var rows = data.getNumberOfRows();
-		
-			for (var r=0 ; r<rows ; r++) {
-				cardtitle[r] = data.getFormattedValue(r,0);
-				carddes[r] = data.getFormattedValue(r,1);
-			}
-		   
-		    	generateCard();
-		}
-		  
-		function generateCard(){
-		    var str = '';
-		    for(let i = 0; i < cardtitle.length ; i++){
-		      s += `<div class="banner">
-		              <p id="title">${cardtitle[i]}</p>
-		            <div class="des">
-		              <p id="textbox">${carddes[i]}.</p>
-		          </div>
-		          </div>
-		        </div>`;
-		    }
-		    document.getElementById("generative-card").innerHTML = str;
-		}
-	
-	</script>	
   
 	<body>
 	
