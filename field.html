@@ -9,46 +9,63 @@
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 		<script>
+		
+			// https://developers.google.com/chart/interactive/docs/quick_start
+			// Load the Visualization API and the corechart package.
 			google.charts.load('current', {'packages':['corechart']});
+			
+			// Set a callback to run when the Google Visualization API is loaded.	
 			google.charts.setOnLoadCallback(init);
 			
 			function init() {
-				var url = 'https://docs.google.com/spreadsheets/d/1Gnn0PCY6ghFofEiZ_6AlR0O1Yb_G--dRyFD6ILlZhcA/gviz/tq?sheet=Field';
+				var url =
+				'https://docs.google.com/spreadsheets/d/1kjo4jcjZZgD0H8X0iUqaJOR-sNK2ZtK8M8LvAW8baP4/gviz/tq?sheet=工作表1';
 				var query = new google.visualization.Query(url);
-				query.setQuery('select *');
-				query.send(processSheetsData);
+					query.setQuery('select *');
+					query.send(processSheetsData);
 			}	
 			
+			imgsrc = ['','']
 			cardtitle = ['','']
 			carddes = ['','']
-				
+			link = ['','']
+			
 			function processSheetsData(response) {
 				var data = response.getDataTable();
 				var columns = data.getNumberOfColumns();
 				var rows = data.getNumberOfRows();
-			
+				
 				for (var r=0 ; r<rows ; r++) {
-					cardtitle[r] = data.getFormattedValue(r,0);
-					carddes[r] = data.getFormattedValue(r,1);
+					imgsrc[r] = data.getFormattedValue(r,0);
+					cardtitle[r] = data.getFormattedValue(r,1);
+					carddes[r] = data.getFormattedValue(r,2);
+					link[r] = data.getFormattedValue(r,3);
 				}
-			   
-			    	generateCard();
+			
+				f();
 			}
-			  
-			function generateCard(){
-			    var str = '';
-			    for(let i = 0; i < cardtitle.length ; i++){
-			      s += `<div class="col s12 m6 l4">
-				          <div class="card">
-				            <div class="card-content">
-		 				<p>${cardtitle[i]}.</p>
-				              <p>${carddes[i]}.</p>
-				          </div>
-				          </div>
-				        </div>`
-			    }
-			    document.getElementById("generativeCard").innerHTML = str;
+			
+			function f(){
+				var s = '';
+				for(let i = 0; i < imgsrc.length ; i++){
+					s += `<div class="col s12 m6 l4">
+					<div class="card">
+					<div class="card-image">
+					<img src="${imgsrc[i]}">
+					<span class="card-title">${cardtitle[i]}</span>
+					</div>
+					<div class="card-content">
+					<p>${carddes[i]}.</p>
+					</div>
+					<div class="card-action">
+					<a href="${link[i]}">link</a>
+					</div>
+					</div>
+					</div>`;
+				}
+				document.getElementById("generativeCard").innerHTML = s;
 			}
+			
 		</script>
 	</head>
 	
